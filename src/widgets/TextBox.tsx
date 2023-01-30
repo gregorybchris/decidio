@@ -32,7 +32,7 @@ export default function TextBox(props: TextBoxProps) {
     >
       {props.iconClass && <props.iconClass className="ml-3 text-neutral-600" />}
       <input
-        className={`w-full bg-transparent px-3 py-2 outline-none placeholder-slate-600 text-slate-600 font-medium ${getInputClassName()}`}
+        className={`w-full bg-transparent px-3 py-2 outline-none placeholder-slate-400 text-slate-600 font-bold ${getInputClassName()}`}
         type="text"
         placeholder={props.placeholder}
         onChange={(event) => props.onUpdate(event.target.value)}

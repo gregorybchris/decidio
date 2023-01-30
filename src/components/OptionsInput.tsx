@@ -14,7 +14,7 @@ export default function OptionsInput(props: OptionsInputProps) {
       <ItemsInput itemType="option" onUpdateItems={props.onUpdateOptions} onDone={props.onDone} />
       <div className="mt-3 inline-block" onClick={props.onSkip}>
         <div className="flex items-center hover:cursor-pointer">
-          <div className="ml-2 text-slate-500 hover:text-slate-600">skip ahead</div>
+          <div className="ml-2 text-slate-500 hover:text-slate-700">skip ahead</div>
         </div>
       </div>
     </div>

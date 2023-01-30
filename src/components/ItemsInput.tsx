@@ -79,7 +79,7 @@ export default function ItemsInput(props: ItemsInputProps) {
       <div className="mt-3 inline-block" onClick={onAddOption}>
         <div className="flex items-center hover:cursor-pointer">
           <AddIcon />
-          <div className="ml-2 text-slate-500 hover:text-slate-600">another {props.itemType}</div>
+          <div className="ml-2 text-slate-500 hover:text-slate-700">another {props.itemType}</div>
         </div>
       </div>
       <Display className="mt-8" data={display} />
