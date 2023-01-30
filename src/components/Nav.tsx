@@ -1,0 +1,26 @@
+import { Link } from "react-router-dom";
+
+function Nav() {
+  return (
+    <div className="flex items-end px-5 py-6 text-slate-700 font-bold text-xl bg-slate-300">
+      <NavItem to="/" name="decidio" />
+      <NavItem to="/archive" name="archive" />
+      <NavItem to="/about" name="about" />
+    </div>
+  );
+}
+
+interface NavItemProps {
+  to: string;
+  name: string;
+}
+
+function NavItem(props: NavItemProps) {
+  return (
+    <Link to={props.to}>
+      <div className="px-2 py-1 hover:bg-slate-200 rounded-md mr-5">{props.name}</div>
+    </Link>
+  );
+}
+
+export default Nav;
