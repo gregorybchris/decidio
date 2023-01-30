@@ -13,7 +13,7 @@ interface ItemsInputProps {
 }
 
 export default function ItemsInput(props: ItemsInputProps) {
-  const [items, setItems] = useState<string[]>([""]);
+  const [items, setItems] = useState<string[]>(["", ""]);
   const [display, setDisplay] = useState<DisplayData>(defaultDisplayData());
 
   function onAddOption() {
@@ -23,7 +23,7 @@ export default function ItemsInput(props: ItemsInputProps) {
 
   function onRemoveOption(index: number) {
     if (items.length == 1) {
-      setItems([""]);
+      setItems(["", ""]);
     } else {
       setItems([...items.filter((v, i) => i != index)]);
     }
@@ -69,6 +69,7 @@ export default function ItemsInput(props: ItemsInputProps) {
             <ItemInput
               item={item}
               itemType={props.itemType}
+              itemNumber={i + 1}
               onUpdate={(value) => setOptionName(value, i)}
               onRemove={() => onRemoveOption(i)}
             />
@@ -88,6 +89,7 @@ export default function ItemsInput(props: ItemsInputProps) {
 interface ItemInputProps {
   item: string;
   itemType: string;
+  itemNumber: number;
   onUpdate: (value: string) => void;
   onRemove: () => void;
 }
@@ -95,7 +97,11 @@ interface ItemInputProps {
 function ItemInput(props: ItemInputProps) {
   return (
     <div className="flex items-center mt-2">
-      <TextBox text={props.item} placeholder={`${props.itemType} name`} onUpdate={(value) => props.onUpdate(value)} />
+      <TextBox
+        text={props.item}
+        placeholder={`${props.itemType} ${props.itemNumber}`}
+        onUpdate={(value) => props.onUpdate(value)}
+      />
       <div className="ml-2" onClick={props.onRemove}>
         <DeleteIcon />
       </div>
