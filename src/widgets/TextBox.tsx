@@ -28,7 +28,7 @@ export default function TextBox(props: TextBoxProps) {
 
   return (
     <div
-      className={`w-full flex justify-between items-center sm:w-80 rounded-md bg-slate-300 focus:bg-slate-200 hover:ease-linear duration-150 ${getClassName()}`}
+      className={`w-full flex justify-between items-center sm:w-80 rounded-md bg-slate-300 hover:ease-linear duration-150 ${getClassName()}`}
     >
       {props.iconClass && <props.iconClass className="ml-3 text-neutral-600" />}
       <input

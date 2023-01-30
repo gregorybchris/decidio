@@ -13,18 +13,38 @@ export default function Decide() {
       .addState("criteria")
       .addState("grid")
       .addTransition("options", "criteria")
+      .addTransition("options", "grid")
       .addTransition("criteria", "grid")
   );
+  const [updater, setUpdater] = useState<boolean>(false);
+  const machine = stateMachine.current;
+
+  function rerender() {
+    setUpdater((updater) => !updater);
+  }
+
+  function transition(state: string) {
+    machine.transition(state);
+    rerender();
+  }
 
   return (
     <div>
-      {stateMachine.current.isCurrent("options") && (
-        <OptionsInput onUpdateOptions={setOptions} onDone={() => stateMachine.current.transition("criteria")} />
+      {machine.isCurrent("options") && (
+        <OptionsInput
+          onUpdateOptions={setOptions}
+          onDone={() => transition("criteria")}
+          onSkip={() => transition("grid")}
+        />
       )}
-      {stateMachine.current.isCurrent("criteria") && (
-        <CriteriaInput onUpdateCriteria={setCriteria} onDone={() => stateMachine.current.transition("grid")} />
+      {machine.isCurrent("criteria") && (
+        <CriteriaInput
+          onUpdateCriteria={setCriteria}
+          onDone={() => transition("grid")}
+          onSkip={() => transition("grid")}
+        />
       )}
-      {stateMachine.current.isCurrent("grid") && (
+      {machine.isCurrent("grid") && (
         <GridInput options={options} setOptions={setOptions} criteria={criteria} setCriteria={setCriteria} />
       )}
     </div>

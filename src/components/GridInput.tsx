@@ -1,3 +1,7 @@
+// import { useReactTable } from "@tanstack/react-table";
+
+import MyTable from "./MyTable";
+
 interface GridInputProps {
   options: string[];
   setOptions: (options: string[]) => void;
@@ -5,8 +9,11 @@ interface GridInputProps {
   setCriteria: (criteria: string[]) => void;
 }
 export default function GridInput(props: GridInputProps) {
+  // const table = useReactTable();
+
   return (
     <div>
+      <MyTable />;
       <div>
         <div>Options</div>
         <ul>

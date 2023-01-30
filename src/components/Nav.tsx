@@ -18,7 +18,7 @@ interface NavItemProps {
 function NavItem(props: NavItemProps) {
   return (
     <Link to={props.to}>
-      <div className="px-2 py-1 hover:bg-slate-200 rounded-md mr-5">{props.name}</div>
+      <div className="px-2 py-1 mr-5 hover:bg-slate-100 rounded-md hover:ease-linear duration-150">{props.name}</div>
     </Link>
   );
 }

@@ -22,11 +22,11 @@ export default function ItemsInput(props: ItemsInputProps) {
   }
 
   function onRemoveOption(index: number) {
-    if (items.length == 1) {
-      setItems(["", ""]);
-    } else {
-      setItems([...items.filter((v, i) => i != index)]);
+    let newItems = [...items.filter((v, i) => i != index)];
+    if (newItems.length == 1) {
+      newItems.push("");
     }
+    setItems(newItems);
   }
 
   function setOptionName(name: string, index: number) {
@@ -62,8 +62,8 @@ export default function ItemsInput(props: ItemsInputProps) {
   }
 
   return (
-    <div>
-      <div className="mt-8">
+    <div className="mt-8">
+      <div>
         {items.map((item, i) => (
           <div key={i}>
             <ItemInput
@@ -76,12 +76,14 @@ export default function ItemsInput(props: ItemsInputProps) {
           </div>
         ))}
       </div>
-      <div className="flex items-center mt-3 hover:cursor-pointer" onClick={onAddOption}>
-        <AddIcon />
-        <div className="ml-2 text-slate-500 hover:text-slate-600">another {props.itemType}</div>
+      <div className="mt-3 inline-block" onClick={onAddOption}>
+        <div className="flex items-center hover:cursor-pointer">
+          <AddIcon />
+          <div className="ml-2 text-slate-500 hover:text-slate-600">another {props.itemType}</div>
+        </div>
       </div>
-      <Button className="mt-8 w-48 flex justify-center" text="done" onClick={onDone} />
-      <Display className="mt-5" data={display} />
+      <Display className="mt-8" data={display} />
+      <Button className="mt-5" text="done" onClick={onDone} />
     </div>
   );
 }

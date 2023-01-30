@@ -12,7 +12,7 @@ export default function Button(props: ButtonProps) {
 
   return (
     <div
-      className={`px-3 py-2 rounded-md bg-slate-500 hover:bg-slate-600 cursor-pointer hover:text-slate-400 hover:ease-linear duration-150 ${getClassName()}`}
+      className={`flex justify-center w-full sm:w-48 px-3 py-2 rounded-md bg-slate-500 hover:bg-slate-600 cursor-pointer hover:text-slate-400 hover:ease-linear duration-150 ${getClassName()}`}
       onClick={() => props.onClick()}
     >
       <div className="font-bold text-slate-200">{props.text}</div>

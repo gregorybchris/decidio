@@ -21,7 +21,7 @@ export default class StateMachine {
 
   addState(name: string): StateMachine {
     if (this._hasState(name)) {
-      console.error(`State ${name} already exists in machine`);
+      console.error(`State "${name}" already exists in machine.`);
     } else {
       this._states.push(new State(name));
     }
@@ -40,9 +40,9 @@ export default class StateMachine {
     const stateA = this._getState(fromState);
     const stateB = this._getState(toState);
     if (!stateA) {
-      console.error(`State ${fromState} already exists in machine`);
+      console.error(`No state named "${fromState}" found in machine.`);
     } else if (!stateB) {
-      console.error(`State ${toState} already exists in machine`);
+      console.error(`No state named "${toState}" found in machine.`);
     } else {
       stateA.addNext(toState);
     }
@@ -52,9 +52,9 @@ export default class StateMachine {
   transition(to: string): StateMachine {
     const toState = this._getState(to);
     if (!toState) {
-      console.error(`State ${to} not found in machine`);
+      console.error(`State "${to}" not found in machine.`);
     } else if (!this._current.hasNext(to)) {
-      console.error(`State ${to} cannot be transitioned to from current state ${this._current.name}`);
+      console.error(`Cannot transition from current state "${this._current.name}" to state "${to}".`);
     } else {
       this._current = toState;
     }
