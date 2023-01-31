@@ -12,22 +12,23 @@ export default function GridInput(props: GridInputProps) {
 
   return (
     <div className="mt-6">
-      <MyTable />;
+      <GridInputList name="Options" items={options} />
+      <GridInputList name="Criteria" items={criteria} />
+      <MyTable />
+    </div>
+  );
+}
+
+function GridInputList({ name, items }: { name: string; items: string[] }) {
+  return (
+    <div>
+      <div className="font-bold">{name}</div>
       <div>
-        <div className="font-bold">Options</div>
-        <ul>
-          {options.map((option, i) => (
-            <li key={`option-${i}`}>{option}</li>
-          ))}
-        </ul>
-      </div>
-      <div>
-        <div className="font-bold">Criteria</div>
-        <ul>
-          {criteria.map((criterion, i) => (
-            <li key={`criterion-${i}`}>{criterion}</li>
-          ))}
-        </ul>
+        {items.map((item, i) => (
+          <div className="ml-4" key={`${name}-${i}`}>
+            • {item}
+          </div>
+        ))}
       </div>
     </div>
   );
