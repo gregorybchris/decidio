@@ -7,17 +7,18 @@ import TextBox from "../widgets/TextBox";
 import { useState } from "react";
 
 interface ItemsInputProps {
-  itemType: string;
+  itemType: [string, string];
   onNext: (items: string[]) => void;
 }
 
 export default function ItemsInput(props: ItemsInputProps) {
   const [items, setItems] = useState<string[]>(["", ""]);
   const [display, setDisplay] = useState<DisplayData>(defaultDisplayData());
+  const [itemTypeS, itemTypeP] = props.itemType;
 
   function onAddOption() {
     if (items.length === 5) {
-      setDisplay({ text: `connot compare more than 5 options`, status: "error" });
+      setDisplay({ text: `connot compare more than 5 ${itemTypeP}`, status: "error" });
       return;
     }
 
@@ -43,20 +44,20 @@ export default function ItemsInput(props: ItemsInputProps) {
 
     // Number of items
     if (items.length < 2) {
-      setDisplay({ text: `please input more than one ${props.itemType}`, status: "error" });
+      setDisplay({ text: `please input more than one ${itemTypeS}`, status: "error" });
       return;
     }
 
     // Invalid names
     if (items.some((item) => item == "")) {
-      setDisplay({ text: `each ${props.itemType} should have a valid name`, status: "error" });
+      setDisplay({ text: `each ${itemTypeS} should have a valid name`, status: "error" });
       return;
     }
 
     // Item uniqueness
     for (let i = 0; i < items.length; i++) {
       if (s.has(items[i])) {
-        setDisplay({ text: `each ${props.itemType} should have a unique name`, status: "error" });
+        setDisplay({ text: `each ${itemTypeS} should have a unique name`, status: "error" });
         return;
       }
       s.add(items[i]);
@@ -82,7 +83,7 @@ export default function ItemsInput(props: ItemsInputProps) {
       <div className="mt-3 inline-block" onClick={onAddOption}>
         <div className="flex items-center hover:cursor-pointer">
           <AddIcon />
-          <div className="ml-2 text-slate-500 hover:text-slate-700">another {props.itemType}</div>
+          <div className="ml-2 text-slate-500 hover:text-slate-700">another {itemTypeS}</div>
         </div>
       </div>
       <Display className="mt-8" data={display} />
@@ -93,18 +94,20 @@ export default function ItemsInput(props: ItemsInputProps) {
 
 interface ItemInputProps {
   item: string;
-  itemType: string;
+  itemType: [string, string];
   itemNumber: number;
   onUpdate: (value: string) => void;
   onRemove: () => void;
 }
 
 function ItemInput(props: ItemInputProps) {
+  const [itemTypeS, itemTypeP] = props.itemType;
+
   return (
     <div className="flex items-center mt-2">
       <TextBox
         text={props.item}
-        placeholder={`${props.itemType} ${props.itemNumber}`}
+        placeholder={`${itemTypeS} ${props.itemNumber}`}
         onUpdate={(value) => props.onUpdate(value)}
       />
       <div className="ml-2" onClick={props.onRemove}>
