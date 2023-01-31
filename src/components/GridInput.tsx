@@ -14,7 +14,7 @@ export default function GridInput(props: GridInputProps) {
     <div className="mt-6">
       <MyTable />;
       <div>
-        <div>Options</div>
+        <div className="font-bold">Options</div>
         <ul>
           {options.map((option, i) => (
             <li key={`option-${i}`}>{option}</li>
@@ -22,7 +22,7 @@ export default function GridInput(props: GridInputProps) {
         </ul>
       </div>
       <div>
-        <div>Criteria</div>
+        <div className="font-bold">Criteria</div>
         <ul>
           {criteria.map((criterion, i) => (
             <li key={`criterion-${i}`}>{criterion}</li>

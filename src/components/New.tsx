@@ -59,8 +59,8 @@ export default function New() {
 
   return (
     <div>
-      {machine.isCurrent("options") && <OptionsInput onDone={onOptionsDone} onSkip={openEditor} />}
-      {machine.isCurrent("criteria") && <CriteriaInput onDone={onCriteriaDone} onSkip={openEditor} />}
+      {machine.isCurrent("options") && <OptionsInput onNext={onOptionsDone} onSkip={openEditor} />}
+      {machine.isCurrent("criteria") && <CriteriaInput onNext={onCriteriaDone} onSkip={openEditor} />}
     </div>
   );
 }

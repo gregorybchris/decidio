@@ -8,7 +8,7 @@ import { useState } from "react";
 
 interface ItemsInputProps {
   itemType: string;
-  onDone: (items: string[]) => void;
+  onNext: (items: string[]) => void;
 }
 
 export default function ItemsInput(props: ItemsInputProps) {
@@ -33,7 +33,7 @@ export default function ItemsInput(props: ItemsInputProps) {
     setItems([...items]);
   }
 
-  function onDone() {
+  function onNext() {
     const s = new Set<string>();
 
     // Number of items
@@ -56,7 +56,7 @@ export default function ItemsInput(props: ItemsInputProps) {
       }
       s.add(items[i]);
     }
-    props.onDone(items);
+    props.onNext(items);
   }
 
   return (
@@ -81,7 +81,7 @@ export default function ItemsInput(props: ItemsInputProps) {
         </div>
       </div>
       <Display className="mt-8" data={display} />
-      <Button className="mt-5" text="done" onClick={onDone} />
+      <Button className="mt-5" text="next" onClick={onNext} />
     </div>
   );
 }
