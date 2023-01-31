@@ -1,32 +1,31 @@
-// import { useReactTable } from "@tanstack/react-table";
-
+import Decision from "../lib/models/decision";
 import MyTable from "./MyTable";
 
 interface GridInputProps {
-  options: string[];
-  setOptions: (options: string[]) => void;
-  criteria: string[];
-  setCriteria: (criteria: string[]) => void;
+  decision: Decision;
+  setDecision: (decision: Decision) => void;
 }
+
 export default function GridInput(props: GridInputProps) {
-  // const table = useReactTable();
+  const options = props.decision.options;
+  const criteria = props.decision.criteria;
 
   return (
-    <div>
+    <div className="mt-6">
       <MyTable />;
       <div>
         <div>Options</div>
         <ul>
-          {props.options.map((option) => (
-            <li>{option}</li>
+          {options.map((option, i) => (
+            <li key={`option-${i}`}>{option}</li>
           ))}
         </ul>
       </div>
       <div>
         <div>Criteria</div>
         <ul>
-          {props.criteria.map((criterion) => (
-            <li>{criterion}</li>
+          {criteria.map((criterion, i) => (
+            <li key={`criterion-${i}`}>{criterion}</li>
           ))}
         </ul>
       </div>

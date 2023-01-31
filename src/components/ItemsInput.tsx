@@ -8,8 +8,7 @@ import { useState } from "react";
 
 interface ItemsInputProps {
   itemType: string;
-  onUpdateItems: (items: string[]) => void;
-  onDone: () => void;
+  onDone: (items: string[]) => void;
 }
 
 export default function ItemsInput(props: ItemsInputProps) {
@@ -57,8 +56,7 @@ export default function ItemsInput(props: ItemsInputProps) {
       }
       s.add(items[i]);
     }
-    props.onUpdateItems(items);
-    props.onDone();
+    props.onDone(items);
   }
 
   return (

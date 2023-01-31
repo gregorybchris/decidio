@@ -8,7 +8,6 @@ module.exports = {
       },
     },
     fontFamily: {
-      poppins: "Poppins",
       sen: "Sen",
     },
   },
