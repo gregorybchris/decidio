@@ -28,11 +28,11 @@ export default function TextBox(props: TextBoxProps) {
 
   return (
     <div
-      className={`w-full flex justify-between items-center sm:w-80 rounded-md bg-slate-300 hover:ease-linear duration-150 ${getClassName()}`}
+      className={`flex w-full items-center justify-between rounded-md bg-slate-300 duration-150 hover:ease-linear sm:w-80 ${getClassName()}`}
     >
       {props.iconClass && <props.iconClass className="ml-3 text-neutral-600" />}
       <input
-        className={`w-full bg-transparent px-3 py-2 outline-none placeholder-slate-400 text-slate-600 font-bold ${getInputClassName()}`}
+        className={`w-full bg-transparent px-3 py-2 font-bold text-slate-600 placeholder-slate-400 outline-none ${getInputClassName()}`}
         type="text"
         placeholder={props.placeholder}
         onChange={(event) => props.onUpdate(event.target.value)}

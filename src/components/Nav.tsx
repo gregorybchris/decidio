@@ -2,7 +2,7 @@ import { Link } from "react-router-dom";
 
 export default function Nav() {
   return (
-    <div className="flex items-end px-5 py-6 text-slate-700 font-bold text-xl bg-slate-300">
+    <div className="flex items-end bg-slate-300 px-5 py-6 text-xl font-bold text-slate-700">
       <NavItem to="/" name="decidio" />
       <NavItem to="/new" name="new" />
       <NavItem to="/archive" name="archive" />
@@ -18,7 +18,7 @@ interface NavItemProps {
 
 function NavItem(props: NavItemProps) {
   return (
-    <Link to={props.to} className="px-2 py-1 mx-2 hover:bg-slate-100 rounded-md hover:ease-linear duration-150">
+    <Link to={props.to} className="mx-2 rounded-md px-2 py-1 duration-150 hover:bg-slate-100 hover:ease-linear">
       {props.name}
     </Link>
   );

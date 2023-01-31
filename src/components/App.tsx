@@ -9,10 +9,10 @@ import New from "./New";
 
 export default function App() {
   return (
-    <div className="font-sen text-slate-700 text-lg">
+    <div className="font-sen text-lg text-slate-700">
       <BrowserRouter>
         <Nav />
-        <div className="px-10 mt-12">
+        <div className="mt-12 px-10">
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/new" element={<New />} />

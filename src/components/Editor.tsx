@@ -22,7 +22,7 @@ export default function Editor() {
         <div>
           <div>oops! no decision found...</div>
           <Button
-            className="mt-6 w-48 flex justify-center"
+            className="mt-6 flex w-48 justify-center"
             text="explore archive"
             onClick={() => navigate("/archive")}
           />

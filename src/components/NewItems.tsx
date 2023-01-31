@@ -104,7 +104,7 @@ function NewItem(props: NewItemProps) {
   const [itemTypeS, itemTypeP] = props.itemType;
 
   return (
-    <div className="flex items-center mt-2">
+    <div className="mt-2 flex items-center">
       <TextBox
         text={props.item}
         placeholder={`${itemTypeS} ${props.itemNumber}`}

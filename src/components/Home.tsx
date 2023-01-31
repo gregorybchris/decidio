@@ -10,7 +10,7 @@ export default function Home() {
       <div className="mt-6">
         decidio has you covered! just run through a few easy steps to make a hard choice easier
       </div>
-      <Button className="mt-6 w-48 flex justify-center" text="let's go!" onClick={() => navigate("/new")} />
+      <Button className="mt-6 flex w-48 justify-center" text="let's go!" onClick={() => navigate("/new")} />
     </div>
   );
 }

@@ -36,11 +36,11 @@ interface ArchiveDecisionProps {
 function ArchiveDecision(props: ArchiveDecisionProps) {
   const date = formatDate(props.decision.created);
   return (
-    <div className="w-64 px-3 py-2 mx-2 my-2 bg-slate-300 rounded-lg">
+    <div className="mx-2 my-2 w-64 rounded-lg bg-slate-300 px-3 py-2">
       <div className="flex flex-col items-center">
         <div className="flex justify-center">
           <Link to={`/editor/${props.decision.slug}`}>
-            <div className="font-bold hover:cursor-pointer text-slate-700 hover:text-slate-500 hover:ease-linear duration-150">
+            <div className="font-bold text-slate-700 duration-150 hover:cursor-pointer hover:text-slate-500 hover:ease-linear">
               {props.decision.name}
             </div>
           </Link>
