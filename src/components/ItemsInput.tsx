@@ -16,6 +16,11 @@ export default function ItemsInput(props: ItemsInputProps) {
   const [display, setDisplay] = useState<DisplayData>(defaultDisplayData());
 
   function onAddOption() {
+    if (items.length === 5) {
+      setDisplay({ text: `connot compare more than 5 options`, status: "error" });
+      return;
+    }
+
     items.push("");
     setItems([...items]);
   }
