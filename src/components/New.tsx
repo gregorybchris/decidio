@@ -1,10 +1,10 @@
 import { useRef, useState } from "react";
 
-import CriteriaInput from "./CriteriaInput";
 import { DateTime } from "luxon";
 import Decision from "../lib/models/decision";
+import NewCriteria from "./NewCriteria";
+import NewOptions from "./NewOptions";
 import { None } from "../lib/types";
-import OptionsInput from "./OptionsInput";
 import StateMachine from "../lib/state/stateMachine";
 import humanId from "human-id";
 import { useDecision } from "../lib/hooks/decision";
@@ -59,8 +59,8 @@ export default function New() {
 
   return (
     <div>
-      {machine.isCurrent("options") && <OptionsInput onNext={onOptionsDone} onSkip={openEditor} />}
-      {machine.isCurrent("criteria") && <CriteriaInput onNext={onCriteriaDone} onSkip={openEditor} />}
+      {machine.isCurrent("options") && <NewOptions onNext={onOptionsDone} onSkip={openEditor} />}
+      {machine.isCurrent("criteria") && <NewCriteria onNext={onCriteriaDone} onSkip={openEditor} />}
     </div>
   );
 }

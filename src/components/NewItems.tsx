@@ -6,12 +6,12 @@ import DeleteIcon from "../widgets/DeleteIcon";
 import TextBox from "../widgets/TextBox";
 import { useState } from "react";
 
-interface ItemsInputProps {
+interface NewItemsProps {
   itemType: [string, string];
   onNext: (items: string[]) => void;
 }
 
-export default function ItemsInput(props: ItemsInputProps) {
+export default function NewItems(props: NewItemsProps) {
   const [items, setItems] = useState<string[]>(["", ""]);
   const [display, setDisplay] = useState<DisplayData>(defaultDisplayData());
   const [itemTypeS, itemTypeP] = props.itemType;
@@ -70,7 +70,7 @@ export default function ItemsInput(props: ItemsInputProps) {
       <div>
         {items.map((item, i) => (
           <div key={i}>
-            <ItemInput
+            <NewItem
               item={item}
               itemType={props.itemType}
               itemNumber={i + 1}
@@ -92,7 +92,7 @@ export default function ItemsInput(props: ItemsInputProps) {
   );
 }
 
-interface ItemInputProps {
+interface NewItemProps {
   item: string;
   itemType: [string, string];
   itemNumber: number;
@@ -100,7 +100,7 @@ interface ItemInputProps {
   onRemove: () => void;
 }
 
-function ItemInput(props: ItemInputProps) {
+function NewItem(props: NewItemProps) {
   const [itemTypeS, itemTypeP] = props.itemType;
 
   return (

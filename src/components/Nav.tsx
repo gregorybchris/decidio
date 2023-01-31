@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 
-function Nav() {
+export default function Nav() {
   return (
     <div className="flex items-end px-5 py-6 text-slate-700 font-bold text-xl bg-slate-300">
       <NavItem to="/" name="decidio" />
@@ -23,5 +23,3 @@ function NavItem(props: NavItemProps) {
     </Link>
   );
 }
-
-export default Nav;

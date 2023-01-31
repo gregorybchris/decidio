@@ -16,7 +16,7 @@ interface DisplayProps {
 }
 
 export default function Display(props: DisplayProps) {
-  const color = props.data.status === "error" ? "text-red-400" : "text-slate-400";
+  const color = props.data.status === "error" ? "text-rose-700" : "text-slate-400";
   const style = `font-bold ${color}`;
   return <div className={`${style} ${props.className}`}>{props.data.text}</div>;
 }

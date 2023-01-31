@@ -1,7 +1,7 @@
 import { useNavigate, useParams } from "react-router-dom";
 
 import Button from "../widgets/Button";
-import GridInput from "./GridInput";
+import EditorTable from "./EditorTable";
 import { useDecision } from "../lib/hooks/decision";
 
 export default function Editor() {
@@ -15,7 +15,7 @@ export default function Editor() {
       {decision && (
         <div>
           <div>{decision.name}</div>
-          <GridInput decision={decision} setDecision={setDecision} />
+          <EditorTable decision={decision} setDecision={setDecision} />
         </div>
       )}
       {!decision && (

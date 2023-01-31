@@ -1,25 +1,28 @@
 import Decision from "../lib/models/decision";
 import MyTable from "./MyTable";
 
-interface GridInputProps {
+interface EditorTableProps {
   decision: Decision;
   setDecision: (decision: Decision) => void;
 }
 
-export default function GridInput(props: GridInputProps) {
+export default function EditorTable(props: EditorTableProps) {
   const options = props.decision.options;
   const criteria = props.decision.criteria;
 
   return (
     <div className="mt-6">
-      <GridInputList name="Options" items={options} />
-      <GridInputList name="Criteria" items={criteria} />
+      <EditorTableList name="Options" items={options} />
+      <EditorTableList name="Criteria" items={criteria} />
       <MyTable />
+      <div>
+        <div>visualization: </div>
+      </div>
     </div>
   );
 }
 
-function GridInputList({ name, items }: { name: string; items: string[] }) {
+function EditorTableList({ name, items }: { name: string; items: string[] }) {
   return (
     <div>
       <div className="font-bold">{name}</div>
