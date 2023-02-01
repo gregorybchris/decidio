@@ -36,7 +36,7 @@ interface ArchiveDecisionProps {
 function ArchiveDecision(props: ArchiveDecisionProps) {
   const date = formatDate(props.decision.created);
   return (
-    <div className="mx-2 my-2 w-full rounded-lg bg-gradient-to-tr from-slate-300 to-slate-400 px-3 py-2 sm:w-64">
+    <div className="mx-2 my-2 w-full rounded-lg bg-slate-300 px-3 py-2 sm:w-64">
       <div className="flex flex-col items-center">
         <div className="flex justify-center">
           <Link to={`/editor/${props.decision.slug}`}>
