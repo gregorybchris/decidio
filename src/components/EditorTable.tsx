@@ -7,8 +7,9 @@ import {
   getPaginationRowModel,
   useReactTable,
 } from "@tanstack/react-table";
-import { useCallback, useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 
+import AddIcon from "../widgets/AddIcon";
 import Decision from "../lib/models/decision";
 import { range } from "../lib/utilities/mathUtilities";
 
@@ -25,7 +26,6 @@ interface EditorTableProps {
 
 export default function EditorTable(props: EditorTableProps) {
   const [data, setData] = useState(() => decisionToTable(props.decision));
-  const [autoResetPageIndex, skipAutoResetPageIndex] = useSkipper();
   const columns = useMemo<ColumnDef<OptionRow>[]>(
     () => [
       {
@@ -50,12 +50,9 @@ export default function EditorTable(props: EditorTableProps) {
     getCoreRowModel: getCoreRowModel(),
     getFilteredRowModel: getFilteredRowModel(),
     getPaginationRowModel: getPaginationRowModel(),
-    autoResetPageIndex,
     // Provide our updateData function to our table meta
     meta: {
       updateData: (rowIndex, columnId, value) => {
-        // Skip age index reset until after next rerender
-        skipAutoResetPageIndex();
         setData((old) =>
           old.map((row, index) => {
             if (index === rowIndex) {
@@ -97,6 +94,17 @@ export default function EditorTable(props: EditorTableProps) {
                 ))}
               </tr>
             ))}
+            <tr className="font-bold">
+              <div
+                className="inline-block px-1 py-1 text-slate-500 hover:cursor-pointer hover:text-slate-700"
+                onClick={() => {
+                  console.log("Adding new criterion");
+                }}
+              >
+                <AddIcon />
+                <div className="ml-2 inline-block">new</div>
+              </div>
+            </tr>
           </tbody>
         </table>
       </div>
@@ -110,10 +118,14 @@ const defaultColumn: Partial<ColumnDef<OptionRow>> = {
     const initialValue = getValue();
     const [value, setValue] = useState(initialValue);
 
+    useEffect(() => {
+      console.log("Edited (row, col, value)", index, id, value);
+    }, [value]);
+
     // Handle cell update
     function onBlur() {
       table.options.meta?.updateData(index, id, value);
-      console.log("Editing (row, col, value)", index, id, value);
+      console.log("Updated (row, col, value)", index, id, value);
     }
 
     // If the initialValue is changed externally, sync it up with our state
@@ -131,22 +143,6 @@ const defaultColumn: Partial<ColumnDef<OptionRow>> = {
     );
   },
 };
-
-function useSkipper() {
-  const shouldSkipRef = useRef(true);
-  const shouldSkip = shouldSkipRef.current;
-
-  // Wrap a function with this to skip a pagination reset temporarily
-  const skip = useCallback(() => {
-    shouldSkipRef.current = false;
-  }, []);
-
-  useEffect(() => {
-    shouldSkipRef.current = true;
-  });
-
-  return [shouldSkip, skip] as const;
-}
 
 interface OptionRow {
   criterion: string;

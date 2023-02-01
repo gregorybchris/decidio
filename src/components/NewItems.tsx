@@ -80,10 +80,10 @@ export default function NewItems(props: NewItemsProps) {
           </div>
         ))}
       </div>
-      <div className="mt-3 inline-block" onClick={onAddOption}>
+      <div className="mt-3 inline-block text-slate-500 hover:text-slate-700" onClick={onAddOption}>
         <div className="flex items-center hover:cursor-pointer">
           <AddIcon />
-          <div className="ml-2 text-slate-500 hover:text-slate-700">another {itemTypeS}</div>
+          <div className="ml-2">another {itemTypeS}</div>
         </div>
       </div>
       <Display className="mt-8" data={display} />
