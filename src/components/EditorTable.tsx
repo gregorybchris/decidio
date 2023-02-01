@@ -75,7 +75,7 @@ export default function EditorTable(props: EditorTableProps) {
         <table className="w-full">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr className="border-y-2" key={headerGroup.id}>
+              <tr className="border-b-2" key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th className="text-left" key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder ? null : (
