@@ -14,7 +14,7 @@ export function useStorage(key: string) {
     return storageValue;
   }
 
-  function set(value: Optional<string> = None) {
+  function save(value: Optional<string> = None) {
     if (value === None) {
       window.localStorage.removeItem(key);
     } else {
@@ -23,5 +23,5 @@ export function useStorage(key: string) {
     }
   }
 
-  return [value, set, load] as const;
+  return [value, save, load] as const;
 }
