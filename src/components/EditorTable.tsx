@@ -94,7 +94,7 @@ export default function EditorTable(props: EditorTableProps) {
                 ))}
               </tr>
             ))}
-            <tr className="font-bold">
+            <tr>
               <div
                 className="inline-block px-1 py-1 text-slate-500 hover:cursor-pointer hover:text-slate-700"
                 onClick={() => {
