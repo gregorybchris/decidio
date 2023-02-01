@@ -71,11 +71,11 @@ export default function EditorTable(props: EditorTableProps) {
 
   return (
     <div className="mt-6">
-      <div className="py-6">
-        <table className="w-full">
+      <div className="rounded-3xl bg-slate-300 pt-4 pb-8">
+        <table className="w-full border-separate border-spacing-0">
           <thead>
             {table.getHeaderGroups().map((headerGroup) => (
-              <tr className="border-y-2" key={headerGroup.id}>
+              <tr key={headerGroup.id}>
                 {headerGroup.headers.map((header) => (
                   <th className="text-left" key={header.id} colSpan={header.colSpan}>
                     {header.isPlaceholder ? null : (
@@ -86,24 +86,27 @@ export default function EditorTable(props: EditorTableProps) {
               </tr>
             ))}
           </thead>
-          <tbody>
+          <tbody className="striped px-10">
             {table.getRowModel().rows.map((row) => (
-              <tr className="border-b" key={row.id}>
+              <tr className="border-b border-b-slate-400 " key={row.id}>
                 {row.getVisibleCells().map((cell) => (
                   <td key={cell.id}>{flexRender(cell.column.columnDef.cell, cell.getContext())}</td>
                 ))}
               </tr>
             ))}
-            <tr>
-              <div
-                className="inline-block px-1 py-1 text-slate-500 hover:cursor-pointer hover:text-slate-700"
+            <tr className="bg-slate-300">
+              <td
+                className="inline-block px-1 py-1 hover:cursor-pointer"
                 onClick={() => {
                   console.log("Adding new criterion");
                 }}
               >
                 <AddIcon />
-                <div className="ml-2 inline-block">new</div>
-              </div>
+                <div className="ml-2 inline-block text-slate-600 hover:text-slate-800">new</div>
+              </td>
+              {/* {range(table.getRowModel().rows[0].getVisibleCells().length - 1).map(() => (
+                <td></td>
+              ))} */}
             </tr>
           </tbody>
         </table>
@@ -135,7 +138,7 @@ const defaultColumn: Partial<ColumnDef<OptionRow>> = {
 
     return (
       <input
-        className="w-full px-1 py-1 outline-none"
+        className="w-full bg-transparent px-1 py-1 outline-none"
         value={value as string}
         onChange={(e) => setValue(e.target.value)}
         onBlur={onBlur}

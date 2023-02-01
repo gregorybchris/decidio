@@ -9,3 +9,17 @@
   -moz-osx-font-smoothing: grayscale;
   -webkit-text-size-adjust: 100%;
 }
+
+@layer utilities {
+  .striped tr:nth-child(odd) {
+    @apply bg-slate-400;
+  }
+
+  td:first-child, th:first-child {
+    @apply pl-10;
+  }
+
+  td:last-child, th:last-child {
+    @apply pr-10;
+  }
+}
