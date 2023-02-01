@@ -4,7 +4,7 @@ import { DateTime } from "luxon";
 import Decision from "../lib/models/decision";
 import NewCriteria from "./NewCriteria";
 import NewOptions from "./NewOptions";
-import { None } from "../lib/types";
+import { None } from "../lib/utilities/typingUtilities";
 import StateMachine from "../lib/state/stateMachine";
 import humanId from "human-id";
 import { useDecision } from "../lib/hooks/decision";

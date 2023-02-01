@@ -1,7 +1,7 @@
 import Decision from "../lib/models/decision";
 import DeleteIcon from "../widgets/DeleteIcon";
 import { Link } from "react-router-dom";
-import { formatDate } from "../lib/dateUtilities";
+import { formatDate } from "../lib/utilities/dateUtilities";
 import { useDecisions } from "../lib/hooks/decision";
 
 export default function Archive() {
@@ -36,7 +36,7 @@ interface ArchiveDecisionProps {
 function ArchiveDecision(props: ArchiveDecisionProps) {
   const date = formatDate(props.decision.created);
   return (
-    <div className="mx-2 my-2 w-64 rounded-lg bg-slate-300 px-3 py-2">
+    <div className="mx-2 my-2 w-full rounded-lg bg-slate-300 px-3 py-2 sm:w-64">
       <div className="flex flex-col items-center">
         <div className="flex justify-center">
           <Link to={`/editor/${props.decision.slug}`}>

@@ -1,4 +1,4 @@
-import { None, Optional } from "../types";
+import { None, Optional } from "../utilities/typingUtilities";
 
 import Decision from "../models/decision";
 import { useStorage } from "./storage";

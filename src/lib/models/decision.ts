@@ -1,4 +1,4 @@
-import { Optional } from "../types";
+import { Optional } from "../utilities/typingUtilities";
 
 export default interface Decision {
   id: string;

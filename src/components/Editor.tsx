@@ -2,6 +2,7 @@ import { useNavigate, useParams } from "react-router-dom";
 
 import Button from "../widgets/Button";
 import EditorTable from "./EditorTable";
+// import Visualization from "./Visualization";
 import { useDecision } from "../lib/hooks/decision";
 
 export default function Editor() {
@@ -16,6 +17,7 @@ export default function Editor() {
         <div>
           <div>{decision.name}</div>
           <EditorTable decision={decision} setDecision={setDecision} />
+          {/* <Visualization /> */}
         </div>
       )}
       {!decision && (

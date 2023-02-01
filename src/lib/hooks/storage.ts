@@ -1,4 +1,4 @@
-import { None, Optional } from "../types";
+import { None, Optional } from "../utilities/typingUtilities";
 import { useEffect, useState } from "react";
 
 export function useStorage(key: string) {
