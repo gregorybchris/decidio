@@ -37,7 +37,7 @@ interface LibraryDecisionProps {
 function LibraryDecision(props: LibraryDecisionProps) {
   const date = formatDate(props.decision.created);
   return (
-    <div className="mx-2 my-2 w-full rounded-lg bg-slate-300 px-3 py-2 sm:w-64">
+    <div className="mx-2 my-2 w-full rounded-lg bg-slate-300 px-3 py-2 duration-150 sm:w-64">
       <div className="flex flex-col items-center">
         <Link className="w-full truncate text-center" to={`/editor/${props.decision.slug}`}>
           <div className="font-bold text-slate-700 duration-150 hover:cursor-pointer hover:text-slate-500 hover:ease-linear">

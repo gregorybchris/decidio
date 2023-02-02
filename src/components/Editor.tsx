@@ -17,7 +17,7 @@ export default function Editor() {
 
   return (
     <div>
-      <div className="text-3xl font-bold text-slate-800">editor</div>
+      <div className="text-3xl font-bold text-slate-800">decision</div>
 
       {decision && (
         <div>
