@@ -5,7 +5,7 @@ export default function Nav() {
     <div className="flex items-end bg-gradient-to-tr from-slate-300 to-slate-500 px-5 py-6 text-xl font-bold text-slate-700">
       <NavItem to="/" name="decidio" />
       <NavItem to="/new" name="new" />
-      <NavItem to="/archive" name="archive" />
+      <NavItem to="/library" name="library" />
       <NavItem to="/about" name="about" />
     </div>
   );

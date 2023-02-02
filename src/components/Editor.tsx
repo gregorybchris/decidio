@@ -39,8 +39,8 @@ export default function Editor() {
           <div>oops! no decision found...</div>
           <Button
             className="mt-6 flex w-48 justify-center"
-            text="explore archive"
-            onClick={() => navigate("/archive")}
+            text="explore library"
+            onClick={() => navigate("/library")}
           />
         </div>
       )}

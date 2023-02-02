@@ -5,7 +5,7 @@ import { accPred } from "../lib/utilities/sortUtilities";
 import { formatDate } from "../lib/utilities/dateUtilities";
 import { useDecisions } from "../lib/hooks/decisionStorage";
 
-export default function Archive() {
+export default function Library() {
   const [decisions, setDecisions, loadDecisions] = useDecisions();
 
   function deleteDecision(slug: string) {
@@ -14,12 +14,12 @@ export default function Archive() {
 
   return (
     <div>
-      <div className="text-3xl font-bold text-slate-800">archive</div>
+      <div className="text-3xl font-bold text-slate-800">library</div>
       <div className="mt-6">
         {decisions.length > 0 && (
           <div className="flex flex-wrap">
             {decisions.sort(accPred((d) => d.created)).map((d) => (
-              <ArchiveDecision decision={d} key={d.id} onDelete={() => deleteDecision(d.slug)} />
+              <LibraryDecision decision={d} key={d.id} onDelete={() => deleteDecision(d.slug)} />
             ))}
           </div>
         )}
@@ -29,12 +29,12 @@ export default function Archive() {
   );
 }
 
-interface ArchiveDecisionProps {
+interface LibraryDecisionProps {
   decision: Decision;
   onDelete: () => void;
 }
 
-function ArchiveDecision(props: ArchiveDecisionProps) {
+function LibraryDecision(props: LibraryDecisionProps) {
   const date = formatDate(props.decision.created);
   return (
     <div className="mx-2 my-2 w-full rounded-lg bg-slate-300 px-3 py-2 sm:w-64">
