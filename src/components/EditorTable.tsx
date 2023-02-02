@@ -84,11 +84,13 @@ export default function EditorTable(props: EditorTableProps) {
     if (columnName === "criterion") {
       newDecision.criteria = props.decision.criteria.map((criterion, i) => (i == rowIndex ? value : criterion));
     } else if (columnName === "weight") {
-      newDecision.weights = props.decision.weights.map((weight, i) => (i == rowIndex ? parseInt(value) : weight));
+      const intValue = parseInt(value) || 0;
+      newDecision.weights = props.decision.weights.map((weight, i) => (i == rowIndex ? intValue : weight));
     } else {
       const scoreColIndex = colIndex - 2;
+      const intValue = parseInt(value) || 0;
       newDecision.scores = props.decision.scores.map((scoresRow, i) =>
-        scoresRow.map((score, j) => (i == rowIndex && j == scoreColIndex ? parseInt(value) : score))
+        scoresRow.map((score, j) => (i == rowIndex && j == scoreColIndex ? intValue : score))
       );
     }
 
