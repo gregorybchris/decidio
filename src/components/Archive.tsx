@@ -39,17 +39,17 @@ function ArchiveDecision(props: ArchiveDecisionProps) {
   return (
     <div className="mx-2 my-2 w-full rounded-lg bg-slate-300 px-3 py-2 sm:w-64">
       <div className="flex flex-col items-center">
-        <div className="flex justify-center">
-          <Link to={`/editor/${props.decision.slug}`}>
-            <div className="font-bold text-slate-700 duration-150 hover:cursor-pointer hover:text-slate-500 hover:ease-linear">
-              {props.decision.name}
-            </div>
-          </Link>
+        <Link className="w-full truncate text-center" to={`/editor/${props.decision.slug}`}>
+          <div className="font-bold text-slate-700 duration-150 hover:cursor-pointer hover:text-slate-500 hover:ease-linear">
+            {props.decision.name}
+          </div>
+        </Link>
+        <div className="flex w-full justify-between">
+          <div>{date}</div>
           <div className="ml-3" onClick={props.onDelete}>
             <DeleteIcon />
           </div>
         </div>
-        <div>{date}</div>
       </div>
     </div>
   );

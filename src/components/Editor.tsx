@@ -22,8 +22,10 @@ export default function Editor() {
       {decision && (
         <div>
           <input
+            type="text"
             className="px-1 py-1 outline-none"
             value={decision.name}
+            maxLength={20}
             onChange={(e) => updateName(e.target.value, decision)}
           />
 
