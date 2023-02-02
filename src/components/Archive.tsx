@@ -1,6 +1,7 @@
 import Decision from "../lib/models/decision";
 import DeleteIcon from "../widgets/DeleteIcon";
 import { Link } from "react-router-dom";
+import { accPred } from "../lib/utilities/sortUtilities";
 import { formatDate } from "../lib/utilities/dateUtilities";
 import { useDecisions } from "../lib/hooks/decisionStorage";
 
@@ -17,8 +18,8 @@ export default function Archive() {
       <div className="mt-6">
         {decisions.length > 0 && (
           <div className="flex flex-wrap">
-            {decisions.map((decision) => (
-              <ArchiveDecision decision={decision} key={decision.id} onDelete={() => deleteDecision(decision.slug)} />
+            {decisions.sort(accPred((d) => d.created)).map((d) => (
+              <ArchiveDecision decision={d} key={d.id} onDelete={() => deleteDecision(d.slug)} />
             ))}
           </div>
         )}
