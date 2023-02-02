@@ -1,24 +1,15 @@
-import { useEffect, useState } from "react";
 import { useNavigate, useParams } from "react-router-dom";
 
 import Button from "../widgets/Button";
 import Decision from "../lib/models/decision";
 import EditorTable from "./EditorTable";
-import { None } from "../lib/utilities/typingUtilities";
-import Visualization from "./Visualization";
+import Results from "./Results";
 import { useDecision } from "../lib/hooks/decisionStorage";
 
 export default function Editor() {
   const { slug } = useParams();
   const [decision, setDecision, loadDecision] = useDecision(slug);
-  const [name, setName] = useState("");
   const navigate = useNavigate();
-
-  useEffect(() => {
-    if (decision !== None) {
-      setName(decision.name);
-    }
-  }, [decision]);
 
   function updateName(name: string, decision: Decision): void {
     setDecision({ ...decision, name });
@@ -30,17 +21,14 @@ export default function Editor() {
 
       {decision && (
         <div>
-          <div className="px-1 py-1 outline-none">Name: {decision.name}</div>
-
           <input
             className="px-1 py-1 outline-none"
-            value={name}
-            onChange={(e) => setName(e.target.value)}
-            onBlur={() => updateName(name, decision)}
+            value={decision.name}
+            onChange={(e) => updateName(e.target.value, decision)}
           />
 
           <EditorTable decision={decision} setDecision={setDecision} />
-          <Visualization />
+          <Results decision={decision} />
         </div>
       )}
 

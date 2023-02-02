@@ -16,6 +16,7 @@ import { useEffect, useMemo, useState } from "react";
 import AddIcon from "../widgets/AddIcon";
 import Decision from "../lib/models/decision";
 import OptionRow from "../lib/models/decisionRow";
+import { zeros } from "../lib/utilities/mathUtilities";
 
 declare module "@tanstack/react-table" {
   interface TableMeta<TData extends RowData> {
@@ -29,7 +30,7 @@ interface EditorTableProps {
 }
 
 export default function EditorTable(props: EditorTableProps) {
-  const data = decisionToTable(props.decision);
+  const [data, setData] = useState(() => decisionToTable(props.decision));
   const columns = useMemo<ColumnDef<OptionRow>[]>(
     () => [
       {
@@ -46,9 +47,6 @@ export default function EditorTable(props: EditorTableProps) {
     ],
     []
   );
-  const defaultColumn: Partial<ColumnDef<OptionRow>> = {
-    cell: TableCell,
-  };
 
   const table = useReactTable({
     data,
@@ -97,6 +95,20 @@ export default function EditorTable(props: EditorTableProps) {
     props.setDecision(newDecision);
   }
 
+  function addCriterion() {
+    const newCriteria = [...props.decision.criteria, "unnamed"];
+    const newWeights = [...props.decision.weights, 0];
+    const newScores = [...props.decision.scores, zeros(props.decision.options.length)];
+    let newDecision: Decision = {
+      ...props.decision,
+      criteria: newCriteria,
+      weights: newWeights,
+      scores: newScores,
+    };
+    props.setDecision(newDecision);
+    setData(decisionToTable(newDecision));
+  }
+
   return (
     <div className="mt-6">
       <div className="py-6">
@@ -125,13 +137,7 @@ export default function EditorTable(props: EditorTableProps) {
             <tr>
               <td
                 className="inline-block px-1 py-1 text-slate-500 hover:cursor-pointer hover:text-slate-700"
-                onClick={() => {
-                  let newDecision: Decision = {
-                    ...props.decision,
-                    criteria: [...props.decision.criteria, "unnamed"],
-                  };
-                  props.setDecision(newDecision);
-                }}
+                onClick={addCriterion}
               >
                 <AddIcon />
                 <div className="ml-2 inline-block">new</div>
@@ -151,25 +157,27 @@ interface TableCellProps {
   table: Table<OptionRow>;
 }
 
-function TableCell(props: TableCellProps) {
-  const initialValue = props.getValue();
-  const [value, setValue] = useState(initialValue);
+const defaultColumn: Partial<ColumnDef<OptionRow>> = {
+  cell: (props: TableCellProps) => {
+    const initialValue = props.getValue();
+    const [value, setValue] = useState(initialValue);
 
-  function onBlur() {
-    props.table.options.meta?.updateData(props.row.index, props.column.id, value);
-  }
+    function onChange(value: string) {
+      setValue(value);
+      props.table.options.meta?.updateData(props.row.index, props.column.id, value);
+    }
 
-  // If the initialValue is changed externally, sync it up with our state
-  useEffect(() => {
-    setValue(initialValue);
-  }, [initialValue]);
+    // If the initialValue is changed externally, sync it up with our state
+    useEffect(() => {
+      setValue(initialValue);
+    }, [initialValue]);
 
-  return (
-    <input
-      className="w-full px-1 py-1 outline-none"
-      value={value as string}
-      onChange={(e) => setValue(e.target.value)}
-      onBlur={onBlur}
-    />
-  );
-}
+    return (
+      <input
+        className="w-full px-1 py-1 outline-none"
+        value={value as string}
+        onChange={(e) => onChange(e.target.value)}
+      />
+    );
+  },
+};
