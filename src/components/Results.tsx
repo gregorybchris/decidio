@@ -18,11 +18,11 @@ export default function Results(props: ResultsProps) {
   return (
     <div className="py-6">
       <div>
-        <div className="font-bold">results:</div>
+        <div className="text-2xl font-bold">results:</div>
         <div>
           {props.decision.options.map((option, i) => (
             <div key={i}>
-              <span>{option}: </span>
+              <span className="pl-4 font-bold">{option}: </span>
               <span>{sums[i]}</span>
             </div>
           ))}
