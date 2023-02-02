@@ -1,14 +1,14 @@
-import { useRef, useState } from "react";
+import { zeros, zeros2d } from "../lib/utilities/mathUtilities";
 
 import { DateTime } from "luxon";
 import Decision from "../lib/models/decision";
 import NewCriteria from "./NewCriteria";
 import NewOptions from "./NewOptions";
-import { None } from "../lib/utilities/typingUtilities";
 import StateMachine from "../lib/state/stateMachine";
 import humanId from "human-id";
-import { useDecision } from "../lib/hooks/decision";
+import { useDecision } from "../lib/hooks/decisionStorage";
 import { useNavigate } from "react-router-dom";
+import { useRef } from "react";
 import { useRerender } from "../lib/hooks/render";
 
 export default function New() {
@@ -17,7 +17,7 @@ export default function New() {
   const stateMachine = useRef(new StateMachine("options").addState("criteria").addTransition("options", "criteria"));
   const navigate = useNavigate();
   const rerender = useRerender();
-  const [decision, setDecision, loadDecision] = useDecision();
+  const [decision, saveDecision, loadDecision] = useDecision();
   const machine = stateMachine.current;
 
   function transition(state: string) {
@@ -40,10 +40,10 @@ export default function New() {
       created,
       options: options.current,
       criteria: criteria.current,
-      weights: None,
-      scores: None,
+      weights: zeros(criteria.current.length),
+      scores: zeros2d(criteria.current.length, options.current.length),
     };
-    setDecision(newDecision);
+    saveDecision(newDecision);
     navigate(`/editor/${slug}`);
   }
 

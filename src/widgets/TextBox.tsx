@@ -1,23 +1,15 @@
 import DeleteIcon from "./DeleteIcon";
-import { KeyboardEvent } from "react";
 
 interface TextBoxProps {
   text: string;
   placeholder: string;
   onUpdate: (text: string) => void;
-  onKeyDown?: (event: KeyboardEvent) => void;
   className?: string;
   inputClassName?: string;
   iconClass?: any;
 }
 
 export default function TextBox(props: TextBoxProps) {
-  function onKeyDown(event: KeyboardEvent) {
-    if (props.onKeyDown) {
-      props?.onKeyDown(event);
-    }
-  }
-
   function getClassName() {
     return props.className || "";
   }
@@ -36,7 +28,6 @@ export default function TextBox(props: TextBoxProps) {
         type="text"
         placeholder={props.placeholder}
         onChange={(event) => props.onUpdate(event.target.value)}
-        onKeyDown={onKeyDown}
         value={props.text}
       />
       {props.text && (

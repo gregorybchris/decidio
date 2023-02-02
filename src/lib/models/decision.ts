@@ -1,5 +1,3 @@
-import { Optional } from "../utilities/typingUtilities";
-
 export default interface Decision {
   id: string;
   slug: string;
@@ -7,6 +5,6 @@ export default interface Decision {
   created: string;
   options: string[];
   criteria: string[];
-  weights: Optional<number[]>;
-  scores: Optional<number[][]>;
+  weights: number[];
+  scores: number[][];
 }

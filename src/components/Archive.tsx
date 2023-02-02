@@ -2,7 +2,7 @@ import Decision from "../lib/models/decision";
 import DeleteIcon from "../widgets/DeleteIcon";
 import { Link } from "react-router-dom";
 import { formatDate } from "../lib/utilities/dateUtilities";
-import { useDecisions } from "../lib/hooks/decision";
+import { useDecisions } from "../lib/hooks/decisionStorage";
 
 export default function Archive() {
   const [decisions, setDecisions, loadDecisions] = useDecisions();
