@@ -1,12 +1,15 @@
+import { Link, useNavigate } from "react-router-dom";
+
+import Button from "../widgets/Button";
 import Decision from "../lib/models/decision";
 import DeleteIcon from "../widgets/DeleteIcon";
-import { Link } from "react-router-dom";
 import { accPred } from "../lib/utilities/sortUtilities";
 import { formatDate } from "../lib/utilities/dateUtilities";
 import { useDecisions } from "../lib/hooks/decisionStorage";
 
 export default function Library() {
   const [decisions, setDecisions, loadDecisions] = useDecisions();
+  const navigate = useNavigate();
 
   function deleteDecision(slug: string) {
     setDecisions([...decisions.filter((d) => d.slug != slug)]);
@@ -23,7 +26,12 @@ export default function Library() {
             ))}
           </div>
         )}
-        {decisions.length == 0 && <div>you have no existing decisions to review</div>}
+        {decisions.length === 0 && (
+          <div>
+            <div>you haven't made any decisions yet!</div>
+            <Button className="mt-10" text="get started" onClick={() => navigate("/new")} />
+          </div>
+        )}
       </div>
     </div>
   );
