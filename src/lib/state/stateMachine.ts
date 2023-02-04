@@ -1,4 +1,4 @@
-import { Optional } from "./types";
+import { Optional } from "../utilities/typingUtilities";
 import State from "./state";
 
 export default class StateMachine {
