@@ -10,7 +10,7 @@ import New from "./New";
 export default function App() {
   return (
     <div className="font-sen text-lg text-slate-700">
-      <BrowserRouter>
+      <BrowserRouter basename="/decidio/demo">
         <Nav />
         <div className="mt-12 px-10">
           <Routes>
