@@ -12,7 +12,7 @@ export default function About() {
       <div className="mt-6">
         That's where decidio comes in. To help you get to the end of that long decision making process, decidio helps
         you enumerate all of the relevant factors and then plots visualizations that help you come to terms with your
-        preferences. Only you can know which choice feels right, but by making your preferencecs explicit decidio will
+        preferences. Only you can know which choice feels right, but by making your preferences explicit decidio will
         help you start to overcome uncertainty.
       </div>
     </div>
