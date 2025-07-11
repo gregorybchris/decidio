@@ -15,15 +15,24 @@ export default function Results(props: ResultsProps) {
     }
   }
 
+  const pairs = props.decision.options
+    .map((option, i) => {
+      return {
+        option: option,
+        score: sums[i],
+      };
+    })
+    .sort((a, b) => b.score - a.score);
+
   return (
     <div className="py-6">
       <div>
         <div className="text-2xl font-bold">results:</div>
         <div>
-          {props.decision.options.map((option, i) => (
-            <div key={i}>
+          {pairs.map(({ option, score }) => (
+            <div key={option}>
               <span className="pl-4 font-bold">{option}: </span>
-              <span>{sums[i]}</span>
+              <span>{score}</span>
             </div>
           ))}
         </div>
